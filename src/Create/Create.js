@@ -6,7 +6,7 @@ import { getGame } from '../graphql/queries'
 
 const Create = ({ close }) => {
   const [host, setHost] = useState('')
-  const [boardSize, setBoardSize] = useState(5)
+  const [boardSize, setBoardSize] = useState(9)
   const history = useHistory()
 
   function createBoard(size) {
