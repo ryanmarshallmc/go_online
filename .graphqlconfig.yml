@@ -1,0 +1,18 @@
+projects:
+  go_online:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        region: us-east-1
+        apiId: 6cigc7nkqvbwvdhlblcc7aprsq
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

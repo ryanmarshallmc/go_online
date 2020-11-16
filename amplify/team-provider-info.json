@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-goonline-dev-13549-authRole",
+      "UnauthRoleArn": "arn:aws:iam::977241101486:role/amplify-goonline-dev-13549-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::977241101486:role/amplify-goonline-dev-13549-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-goonline-dev-13549-deployment",
+      "UnauthRoleName": "amplify-goonline-dev-13549-unauthRole",
+      "StackName": "amplify-goonline-dev-13549",
+      "StackId": "arn:aws:cloudformation:us-east-1:977241101486:stack/amplify-goonline-dev-13549/f8d136b0-27d5-11eb-a7b7-0ab7c9206afb",
+      "AmplifyAppId": "d1e6r89y5k9y6e"
+    }
+  }
+}
