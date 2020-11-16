@@ -8,7 +8,6 @@ const Board = ({ size, board, handleMove }) => {
 
   function addEdges(x, y) {
     const classes = []
-    console.log(x, y, size)
     if (x === size - 1) {
       classes.push('right-edge')
     }
