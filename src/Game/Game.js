@@ -15,10 +15,11 @@ const Game = () => {
   const [game, setGame] = useState()
   const [loading, setLoading] = useState(true)
   const [copyText, setCopyText] = useState('Copy Sharable Link')
+  const [player, setPlayer] = useState(1)
 
   useEffect(() => {
     fetchGame()
-  }, [])
+  }, [id])
 
   useEffect(() => {
     game && initSubscription()
@@ -48,61 +49,62 @@ const Game = () => {
     })
   }
 
-  async function handleMove(cellX, cellY) {
-    console.log(
-      'handling move on cell',
+  async function handleMove(cellX, cellY, playerOverride) {
+    const updatedBoard = updateBoard(
+      game.board,
       cellX,
       cellY,
-      'for player',
-      game.currentTurn
+      playerOverride !== undefined ? playerOverride : player
     )
-    const updatedBoard = updateBoard(game.board, cellX, cellY, game.currentTurn)
     const res = await callApi(updateGame, {
       input: {
         id,
         board: JSON.stringify(updatedBoard),
-        currentTurn: game.currentTurn === 1 ? 2 : 1,
       },
     })
-    console.log('after update:', res)
     setGame({
       ...res.data.updateGame,
       board: JSON.parse(res.data.updateGame.board),
     })
   }
 
-  function updateBoard(board, x, y, player) {
+  function updateBoard(board, x, y, value) {
     // TODO: implement game logic
     const updated = board.slice()
-    updated[y][x] = player
+    updated[y][x] = value
     return updated
   }
 
-  function copyLink() {
-    navigator.clipboard.writeText(`${BASE_URL}/game/${id}`)
-    setCopyText('Link Copied!')
-    setTimeout(() => setCopyText('Copy Sharable Link'), 2000)
+  const PlayerSelect = () => {
+    return (
+      <div id="PlayerSelect">
+        <button
+          className={player === 1 ? 'active' : ''}
+          onClick={() => setPlayer(1)}
+        >
+          Light
+        </button>
+        <button
+          className={player === 2 ? 'active' : ''}
+          onClick={() => setPlayer(2)}
+        >
+          Dark
+        </button>
+      </div>
+    )
   }
 
   if (!id) return <Redirect to="/" />
-  if (loading) return <div>loading game id: {id}</div>
+  if (loading) return <div id="Game">loading game id: {id}</div>
   else if (game)
     return (
       <div id="Game">
-        <Link to="/">
-          <h1>Go!</h1>
-        </Link>
-        {game.host && <h2>Hosted by: {game.host}</h2>}
-        <p>
-          It's currently <strong>Player {game.currentTurn}'s</strong> turn.
-        </p>
-        <h6>
-          <span onClick={copyLink}>{copyText}</span>
-          &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-          <Link to="/">
-            <span>Back to Home</span>
-          </Link>
-        </h6>
+        {game.host && (
+          <h2>
+            Hosted by:&nbsp;<strong>{game.host}</strong>
+          </h2>
+        )}
+        <PlayerSelect />
         <Board
           size={game.boardSize}
           board={game.board}

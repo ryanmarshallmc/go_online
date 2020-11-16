@@ -10,7 +10,6 @@ export const createGame = /* GraphQL */ `
       boardSize
       createdAt
       updatedAt
-      currentTurn
     }
   }
 `;
@@ -23,7 +22,6 @@ export const updateGame = /* GraphQL */ `
       boardSize
       createdAt
       updatedAt
-      currentTurn
     }
   }
 `;

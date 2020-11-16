@@ -62,6 +62,7 @@
       font-size: 24px;
       cursor: pointer;
       z-index: 2;
+      border: none;
 
       @media (max-width: $mobile) {
         top: 16px;

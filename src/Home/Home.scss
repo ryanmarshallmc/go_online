@@ -1,48 +1,48 @@
 @import '../vars.scss';
 
 #Home {
-  height: 100%;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-direction: column;
+  padding: 160px 32px;
 
   @media (max-width: $mobile) {
-    padding: 32px 8px;
+    padding: 120px 16px 32px 16px;
     text-align: center;
   }
 
+  .bg {
+    position: absolute;
+    bottom: 4vh;
+    right: 4vh;
+    height: 64vh;
+    opacity: 1;
+    z-index: 0;
+
+    @media (max-width: $mobile) {
+      height: unset;
+      width: 92vw;
+      right: 4vw;
+    }
+  }
+
   h1 {
-    font-size: 96px;
-    color: $primary;
+    font-size: 64px;
+    color: $light;
     line-height: 1;
     margin: 0;
+
+    @media (max-width: $mobile) {
+      font-size: 54px;
+    }
   }
 
   h2 {
     font-size: 24px;
     font-weight: 500;
-  }
-
-  .Buttons {
-    display: flex;
-    justify-content: space-between;
-    @media (max-width: $mobile) {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    button {
-      margin: 16px;
-      background: $bg;
-
-      &.active {
-        background: $primary !important;
-        color: $bg;
-      }
-    }
   }
 
   h3 {
@@ -51,7 +51,6 @@
 
   label {
     font-weight: 900;
-    margin-bottom: 32px;
   }
 
   input {
@@ -59,6 +58,27 @@
   }
 
   .action {
+    margin-top: 16px;
     background: $dark;
+  }
+}
+
+.Buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+  @media (max-width: $mobile) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  button {
+    margin: 8px;
+    background: $bg;
+
+    &.active {
+      background: $primary !important;
+      color: $bg;
+    }
   }
 }

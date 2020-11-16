@@ -1,27 +1,30 @@
 @import '../vars.scss';
 
 #Game {
-  padding: 32px;
+  padding: 120px 32px 32px 32px;
+  text-align: center;
 
   @media (max-width: $mobile) {
-    padding: 32px 8px;
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 96px;
-    color: $primary;
-    line-height: 1;
-    margin: 0;
-    cursor: pointer;
-    &:hover {
-      color: $light;
-    }
+    padding: 120px 8px 32px 8px;
   }
 
   h2 {
+    margin: 16px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 24px;
     font-weight: 500;
+
+    input {
+      width: 112px;
+      margin: 0 8px;
+    }
+
+    button {
+      height: 40px;
+      margin: 0 8px;
+    }
   }
 
   p {
@@ -33,12 +36,29 @@
     color: $primary;
   }
 
-  h6 span {
-    text-decoration: underline;
-    color: $white;
-    &:hover {
-      cursor: pointer;
-      color: $light;
+  h6 {
+    margin: 8px 0 16px 0;
+    span {
+      text-decoration: underline;
+      color: $white;
+      &:hover {
+        cursor: pointer;
+        color: $light;
+      }
+    }
+  }
+
+  #PlayerSelect {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      margin: 0 8px 32px 8px;
+    }
+    .active {
+      background: $primary;
+      color: $bg;
     }
   }
 }

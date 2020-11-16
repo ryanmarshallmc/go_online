@@ -20,7 +20,7 @@ const Modal = ({ children, close }) => {
           onClick={handleClose}
           aria-label="Close Popup Menu"
         >
-          <i className="fa fa-times" alt="Close" />
+          x
         </button>
         {children}
         <div></div>

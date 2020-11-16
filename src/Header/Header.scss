@@ -1,0 +1,62 @@
+@import '../vars.scss';
+
+header {
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  font-weight: 900;
+  z-index: 100;
+
+  @media (max-width: $mobile) {
+    justify-content: space-between;
+  }
+
+  .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    button {
+      margin: 8px 16px;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+  }
+  h1 {
+    font-size: 48px;
+    color: $primary;
+    line-height: 1;
+    margin: 0;
+    &:hover {
+      color: $light;
+    }
+  }
+  .GameId {
+    position: relative;
+    margin-left: 32px;
+    input {
+      margin-left: 8px;
+      width: 132px;
+      padding: 4px 0 4px 8px;
+      background: $dark;
+      color: $primary;
+      font-weight: 900;
+    }
+    i {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      &:hover {
+        color: $primary;
+        cursor: pointer;
+      }
+    }
+  }
+}

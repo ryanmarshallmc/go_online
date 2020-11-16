@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Board.scss'
 
 const Board = ({ size, board, handleMove }) => {
+  const [menu, setMenu] = useState()
   useEffect(() => {
     document.documentElement.style.setProperty('--boardSize', size)
   }, [size])
@@ -21,15 +22,60 @@ const Board = ({ size, board, handleMove }) => {
     return cell === 1 ? 'light' : cell === 2 ? 'dark' : null
   }
 
+  function handleCloseMenu(e) {
+    if (e.target.id === 'Board') setMenu(null)
+  }
+
+  const ContextMenu = ({ x, y }) => (
+    <div id="ContextMenu">
+      <div
+        className="clear"
+        onClick={() => {
+          handleMove(x, y, 0)
+          setMenu(null)
+        }}
+      />
+      <div
+        className="light"
+        onClick={() => {
+          handleMove(x, y, 1)
+          setMenu(null)
+        }}
+      />
+      <div
+        className="dark"
+        onClick={() => {
+          handleMove(x, y, 2)
+          setMenu(null)
+        }}
+      />
+      <div className="close" onClick={() => setMenu(null)}>
+        x
+      </div>
+    </div>
+  )
+
   return (
-    <div id="Board">
+    <div id="Board" onClick={handleCloseMenu}>
       {board.map((row, y) =>
         row.map((cell, x) => (
-          <div key={[x, y]} className={`Cell ${addEdges(x, y)}`}>
+          <div
+            key={[x, y]}
+            className={`Cell ${addEdges(x, y)} ${
+              menu === `${x},${y}` ? 'active' : ''
+            }`}
+          >
             <div
               className={`Stone ${addColor(cell)}`}
-              onClick={cell ? null : () => handleMove(x, y)}
+              onClick={
+                cell ? () => setMenu(`${x},${y}`) : () => handleMove(x, y)
+              }
+              onContextMenu={(e) => {
+                e.preventDefault()
+                setMenu(`${x},${y}`)
+              }}
             />
+            {menu === `${x},${y}` && <ContextMenu x={x} y={y} />}
           </div>
         ))
       )}
