@@ -61,7 +61,7 @@ const Game = () => {
       input: {
         id,
         board: JSON.stringify(updatedBoard),
-        currentTurn: game.currentTurn === 'white' ? 'black' : 'white',
+        currentTurn: game.currentTurn === 1 ? 2 : 1,
       },
     })
     console.log('after update:', res)
@@ -74,7 +74,7 @@ const Game = () => {
   function updateBoard(board, x, y, player) {
     // TODO: implement game logic
     const updated = board.slice()
-    updated[y][x] = player.substring(0, 1)
+    updated[y][x] = player
     return updated
   }
 
@@ -92,8 +92,10 @@ const Game = () => {
         <Link to="/">
           <h1>Go!</h1>
         </Link>
-        <h2>Hosted by: {game.host}</h2>
-        <p>It's currently {game.currentTurn}'s turn.</p>
+        {game.host && <h2>Hosted by: {game.host}</h2>}
+        <p>
+          It's currently <strong>Player {game.currentTurn}'s</strong> turn.
+        </p>
         <h6>
           <span onClick={copyLink}>{copyText}</span>
           &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;

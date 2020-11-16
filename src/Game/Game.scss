@@ -24,6 +24,15 @@
     font-weight: 500;
   }
 
+  p {
+    font-size: 20px;
+  }
+
+  strong {
+    font-weight: 900;
+    color: $primary;
+  }
+
   h6 span {
     text-decoration: underline;
     color: $white;

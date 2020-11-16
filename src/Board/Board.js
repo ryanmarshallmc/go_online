@@ -17,13 +17,17 @@ const Board = ({ size, board, handleMove }) => {
     return classes.join(' ')
   }
 
+  function addColor(cell) {
+    return cell === 1 ? 'light' : cell === 2 ? 'dark' : null
+  }
+
   return (
     <div id="Board">
       {board.map((row, y) =>
         row.map((cell, x) => (
-          <div key={[x, y]} className={`Cell ${x} ${y} ${addEdges(x, y)}`}>
+          <div key={[x, y]} className={`Cell ${addEdges(x, y)}`}>
             <div
-              className={`Stone ${cell}`}
+              className={`Stone ${addColor(cell)}`}
               onClick={cell ? null : () => handleMove(x, y)}
             />
           </div>

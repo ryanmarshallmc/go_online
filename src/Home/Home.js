@@ -35,7 +35,7 @@ const Home = () => {
 
     function createBoard(size) {
       return Array.apply(null, Array(size)).map(() =>
-        Array.apply(null, Array(size)).map(() => '')
+        Array.apply(null, Array(size)).map(() => 0)
       )
     }
 
