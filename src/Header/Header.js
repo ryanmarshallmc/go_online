@@ -9,7 +9,7 @@ const Header = () => {
   const { id } = useParams()
   const [modal, setModal] = useState()
   const [copy, setCopy] = useState('fa fa-clipboard')
-  const [label, setLabel] = useState('Sharing ID:')
+  const [label, setLabel] = useState('Share ID:')
 
   function handleCopy() {
     const copyText = document.getElementById('gameId')
@@ -20,13 +20,13 @@ const Header = () => {
     setLabel('Copied!')
     setTimeout(() => {
       setCopy('fa fa-clipboard')
-      setLabel('Sharing Id:')
+      setLabel('Share Id:')
     }, 1000)
   }
   return (
     <header>
       <Link to="/">
-        <h1>Go!</h1>
+        <h1>letsPlayGo</h1>
       </Link>
       {id && (
         <div className="GameId">

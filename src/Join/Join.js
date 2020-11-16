@@ -9,6 +9,7 @@ const Join = ({ close }) => {
       <label htmlFor="host">
         Sharing ID:&nbsp;&nbsp;
         <input
+          autoFocus
           type="text"
           value={gameId}
           onChange={(e) => setGameId(e.target.value.toUpperCase())}

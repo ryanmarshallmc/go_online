@@ -30,12 +30,18 @@ header {
     }
   }
   h1 {
-    font-size: 48px;
+    font-size: 32px;
     color: $primary;
     line-height: 1;
     margin: 0;
+    background: $dark;
+    padding: 12px;
+    border-radius: 8px;
     &:hover {
       color: $light;
+    }
+    @media (max-width: $mobile) {
+      font-size: 16px;
     }
   }
   .GameId {
@@ -43,7 +49,7 @@ header {
     margin-left: 32px;
     input {
       margin-left: 8px;
-      width: 132px;
+      width: 92px;
       padding: 4px 0 4px 8px;
       background: $dark;
       color: $primary;

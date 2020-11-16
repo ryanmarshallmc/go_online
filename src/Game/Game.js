@@ -79,6 +79,7 @@ const Game = () => {
   const PlayerSelect = () => {
     return (
       <div id="PlayerSelect">
+        <h4>Choose your Color:</h4>
         <button
           className={player === 1 ? 'active' : ''}
           onClick={() => setPlayer(1)}

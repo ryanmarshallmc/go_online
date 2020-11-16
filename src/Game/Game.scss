@@ -53,8 +53,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    white-space: nowrap;
+    flex-wrap: wrap;
+    h4 {
+      font-size: 20px;
+      font-weight: 900;
+      margin: 0;
+      padding: 0 8px;
+      @media (max-width: $mobile) {
+        font-size: 18px;
+        width: 100%;
+      }
+    }
     button {
-      margin: 0 8px 32px 8px;
+      margin: 8px;
     }
     .active {
       background: $primary;

@@ -3,7 +3,6 @@ import { useHistory } from 'react-router'
 import { callApi } from '../api'
 import { createGame } from '../graphql/mutations'
 import { getGame } from '../graphql/queries'
-const shortid = require('shortid')
 
 const Create = ({ close }) => {
   const [host, setHost] = useState('')
@@ -17,7 +16,7 @@ const Create = ({ close }) => {
   }
 
   async function handleCreate() {
-    const id = shortid.generate().toUpperCase().substring(0, 4)
+    const id = generateId(4)
     const existing = await callApi(getGame, { id })
     if (existing.data.getGame) {
       handleCreate()
@@ -35,12 +34,22 @@ const Create = ({ close }) => {
     close()
   }
 
+  function generateId(length) {
+    let result = ''
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length))
+    }
+    return result
+  }
+
   return (
     <>
       <h3>Create a New Game</h3>
       <label htmlFor="host">
         Hosted by:&nbsp;&nbsp;
         <input
+          autoFocus
           type="text"
           value={host}
           onChange={(e) => setHost(e.target.value)}
@@ -48,7 +57,7 @@ const Create = ({ close }) => {
         />
       </label>
       <div className="Buttons">
-        {[5, 9, 13, 19].map((size) => (
+        {[9, 13, 19].map((size) => (
           <button
             key={size}
             onClick={() => setBoardSize(size)}
