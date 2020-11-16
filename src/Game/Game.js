@@ -80,7 +80,11 @@ const Game = () => {
             <span>back to home</span>
           </Link>
         </h6>
-        <Board board={game.board} handleMove={handleMove} />
+        <Board
+          size={game.boardSize}
+          board={game.board}
+          handleMove={handleMove}
+        />
       </div>
     )
   else return <div>Could not find a game with id: {id}</div>

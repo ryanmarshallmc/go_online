@@ -22,7 +22,7 @@
     width: 92%;
     max-width: 800px;
     padding: 16px 32px;
-    background: $white;
+    background: $dark;
     border-radius: 8px;
     max-height: 92%;
     overflow-x: hidden;
@@ -32,7 +32,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: $dark;
+    color: $white;
 
     &.closing {
       animation: slide-out 0.32s ease;
@@ -44,6 +44,10 @@
 
     h1 {
       line-height: 1.1;
+    }
+
+    button {
+      background: $bg;
     }
 
     #ModalClose {

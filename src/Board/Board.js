@@ -1,29 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Board.scss'
 
-const Board = ({ board, handleMove }) => {
+const Board = ({ size, board, handleMove }) => {
+  useEffect(() => {
+    document.documentElement.style.setProperty('--boardSize', size)
+  }, [size])
+
+  function addEdges(x, y) {
+    const classes = []
+    console.log(x, y, size)
+    if (x === size - 1) {
+      classes.push('right-edge')
+    }
+    if (y === size - 1) {
+      classes.push('bottom-edge')
+    }
+    return classes.join(' ')
+  }
+
   return (
     <div id="Board">
-      {board.map((row, i) => (
-        <div
-          className="Row"
-          key={i}
-          style={{
-            height: `${100 / board.length}%`,
-          }}
-        >
-          {row.map((cell, j) => (
-            <div
-              key={[i, j]}
-              style={{
-                width: `${100 / board.length}%`,
-              }}
-              className={`Cell ${cell}`}
-              onClick={() => handleMove(j, i)}
-            />
-          ))}
-        </div>
-      ))}
+      {board.map((row, y) =>
+        row.map((cell, x) => (
+          <div key={[x, y]} className={`Cell ${x} ${y} ${addEdges(x, y)}`}>
+            <div className={`Stone ${cell}`} onClick={() => handleMove(x, y)} />
+          </div>
+        ))
+      )}
     </div>
   )
 }

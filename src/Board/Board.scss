@@ -1,40 +1,78 @@
 @import '../vars.scss';
 
 #Board {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(var(--boardSize, 1), 1fr);
+  grid-gap: 0px;
   width: 64vh;
   height: 64vh;
   max-width: 92vw;
   max-height: 92vw;
   margin: 32px auto;
+  overflow: hidden;
+  background: $bg;
+  border-radius: 8px;
 
-  .Row {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .Cell {
+    position: relative;
+    transition: all 0.32s ease;
+    padding: 10%;
 
-    .Cell {
-      height: 100%;
-      flex-shrink: 0;
+    .Stone {
+      position: relative;
+      z-index: 10;
       border-radius: 50%;
-      background: $primary;
       border: 4px solid $dark;
-      transition: all 0.32s ease;
+      background: $bg;
+
+      height: 60%;
+      width: 60%;
+      margin: 20%;
+
+      &:hover {
+        cursor: pointer;
+        background: $light;
+        border: 4px solid $grey;
+      }
 
       &.w {
+        // border: 4px solid $grey;
+        border: none;
         background: white;
+        height: 100%;
+        width: 100%;
+        margin: 0;
       }
       &.b {
+        // border: 4px solid $grey;
+        border: none;
         background: black;
+        height: 100%;
+        width: 100%;
+        margin: 0;
       }
-      &:hover {
-        background: lightblue;
-        cursor: pointer;
-      }
+    }
+
+    &:not(.right-edge):before {
+      content: '';
+      z-index: 0;
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      width: 100%;
+      height: 2px;
+      background: $dark;
+    }
+
+    &:not(.bottom-edge):after {
+      content: '';
+      z-index: 0;
+      position: absolute;
+      left: 50%;
+      top: 30%;
+      height: 100%;
+      width: 2px;
+      background: $dark;
     }
   }
 }

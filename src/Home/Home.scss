@@ -29,8 +29,8 @@
       margin: 16px;
 
       &.active {
-        background: $primary;
-        color: $dark;
+        background: $primary !important;
+        color: $bg;
       }
     }
   }
