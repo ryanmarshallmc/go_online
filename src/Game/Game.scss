@@ -19,8 +19,9 @@
     font-weight: 500;
   }
 
-  h6 {
+  h6 span {
     text-decoration: underline;
+    color: $white;
     &:hover {
       cursor: pointer;
       color: $light;

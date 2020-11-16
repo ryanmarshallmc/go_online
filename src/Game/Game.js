@@ -74,7 +74,12 @@ const Game = () => {
         </Link>
         <h2>Hosted by: {game.host}</h2>
         <p>It's currently {game.currentTurn}'s turn.</p>
-        <h6 onClick={copyLink}>{copyText}</h6>
+        <h6>
+          <span onClick={copyLink}>{copyText}</span> |{' '}
+          <Link to="/">
+            <span>back to home</span>
+          </Link>
+        </h6>
         <Board board={game.board} handleMove={handleMove} />
       </div>
     )
