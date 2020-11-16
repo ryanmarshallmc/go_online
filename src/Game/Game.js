@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { callApi } from '../api'
+import { callApi, createSubscription } from '../api'
 import Board from '../Board/Board'
 import { updateGame } from '../graphql/mutations'
 import { getGame } from '../graphql/queries'
+import { onUpdateGame } from '../graphql/subscriptions'
 import './Game.scss'
 
 const BASE_URL = 'localhost:3000'
@@ -16,17 +17,36 @@ const Game = () => {
   const [copyText, setCopyText] = useState('Copy Sharable Link')
 
   useEffect(() => {
-    async function fetchGame() {
-      const res = await callApi(getGame, { id })
-      console.log('got game!', res)
-      setGame({
-        ...res.data.getGame,
-        board: JSON.parse(res.data.getGame.board),
-      })
-      setLoading(false)
-    }
     fetchGame()
   }, [])
+
+  useEffect(() => {
+    game && initSubscription()
+  }, [game])
+
+  async function fetchGame() {
+    const res = await callApi(getGame, { id })
+    setGame({
+      ...res.data.getGame,
+      board: JSON.parse(res.data.getGame.board),
+    })
+    setLoading(false)
+  }
+
+  async function initSubscription() {
+    createSubscription(
+      onUpdateGame,
+      { id, host: game.host },
+      handleSubscriptionUpdate
+    )
+  }
+
+  async function handleSubscriptionUpdate(res) {
+    setGame({
+      ...res.value.data.onUpdateGame,
+      board: JSON.parse(res.value.data.onUpdateGame.board),
+    })
+  }
 
   async function handleMove(cellX, cellY) {
     console.log(
@@ -75,9 +95,10 @@ const Game = () => {
         <h2>Hosted by: {game.host}</h2>
         <p>It's currently {game.currentTurn}'s turn.</p>
         <h6>
-          <span onClick={copyLink}>{copyText}</span> |{' '}
+          <span onClick={copyLink}>{copyText}</span>
+          &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
           <Link to="/">
-            <span>back to home</span>
+            <span>Back to Home</span>
           </Link>
         </h6>
         <Board

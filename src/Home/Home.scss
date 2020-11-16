@@ -9,6 +9,11 @@
   align-items: center;
   flex-direction: column;
 
+  @media (max-width: $mobile) {
+    padding: 32px 8px;
+    text-align: center;
+  }
+
   h1 {
     font-size: 96px;
     color: $primary;
@@ -24,9 +29,14 @@
   .Buttons {
     display: flex;
     justify-content: space-between;
+    @media (max-width: $mobile) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
     button {
       margin: 16px;
+      background: $bg;
 
       &.active {
         background: $primary !important;

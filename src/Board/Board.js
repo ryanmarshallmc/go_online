@@ -23,7 +23,10 @@ const Board = ({ size, board, handleMove }) => {
       {board.map((row, y) =>
         row.map((cell, x) => (
           <div key={[x, y]} className={`Cell ${x} ${y} ${addEdges(x, y)}`}>
-            <div className={`Stone ${cell}`} onClick={() => handleMove(x, y)} />
+            <div
+              className={`Stone ${cell}`}
+              onClick={cell ? null : () => handleMove(x, y)}
+            />
           </div>
         ))
       )}
