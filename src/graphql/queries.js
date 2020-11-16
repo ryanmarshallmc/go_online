@@ -6,21 +6,11 @@ export const getGame = /* GraphQL */ `
     getGame(id: $id) {
       id
       host
-    }
-  }
-`;
-export const listGames = /* GraphQL */ `
-  query ListGames(
-    $filter: TableGameFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        host
-      }
-      nextToken
+      board
+      boardSize
+      createdAt
+      updatedAt
+      currentTurn
     }
   }
 `;

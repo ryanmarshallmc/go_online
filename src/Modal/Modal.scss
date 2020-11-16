@@ -1,0 +1,109 @@
+@import '../vars.scss';
+
+#ModalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.64);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in 0.32s ease;
+  z-index: 40;
+
+  &.closing {
+    animation: fade-out 0.32s ease;
+  }
+
+  #Modal {
+    position: relative;
+    width: 92%;
+    max-width: 800px;
+    padding: 16px 32px;
+    background: $white;
+    border-radius: 8px;
+    max-height: 92%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    animation: slide-in 0.32s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: $dark;
+
+    &.closing {
+      animation: slide-out 0.32s ease;
+    }
+
+    @media (max-width: $mobile) {
+      padding: 16px;
+    }
+
+    h1 {
+      line-height: 1.1;
+    }
+
+    #ModalClose {
+      height: unset;
+      padding: 0;
+      background: none;
+      margin: 0;
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 2;
+
+      @media (max-width: $mobile) {
+        top: 16px;
+        right: 16px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(200%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(200%);
+      opacity: 0;
+    }
+  }
+}

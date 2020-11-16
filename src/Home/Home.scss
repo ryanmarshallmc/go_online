@@ -1,0 +1,54 @@
+@import '../vars.scss';
+
+#Home {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    font-size: 96px;
+    color: $primary;
+    line-height: 1;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .Buttons {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      margin: 16px;
+
+      &.active {
+        background: $primary;
+        color: $dark;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 32px;
+  }
+
+  label {
+    font-weight: 900;
+    margin-bottom: 32px;
+  }
+
+  input {
+    margin-left: 8px;
+  }
+
+  .action {
+    background: $dark;
+  }
+}

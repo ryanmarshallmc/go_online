@@ -1,0 +1,29 @@
+@import '../vars.scss';
+
+#Game {
+  padding: 32px;
+
+  h1 {
+    font-size: 96px;
+    color: $primary;
+    line-height: 1;
+    margin: 0;
+    cursor: pointer;
+    &:hover {
+      color: $light;
+    }
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  h6 {
+    text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+      color: $light;
+    }
+  }
+}

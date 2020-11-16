@@ -6,6 +6,11 @@ export const onCreateGame = /* GraphQL */ `
     onCreateGame(id: $id, host: $host) {
       id
       host
+      board
+      boardSize
+      createdAt
+      updatedAt
+      currentTurn
     }
   }
 `;
@@ -14,14 +19,11 @@ export const onUpdateGame = /* GraphQL */ `
     onUpdateGame(id: $id, host: $host) {
       id
       host
-    }
-  }
-`;
-export const onDeleteGame = /* GraphQL */ `
-  subscription OnDeleteGame($id: String, $host: String) {
-    onDeleteGame(id: $id, host: $host) {
-      id
-      host
+      board
+      boardSize
+      createdAt
+      updatedAt
+      currentTurn
     }
   }
 `;

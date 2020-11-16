@@ -6,6 +6,11 @@ export const createGame = /* GraphQL */ `
     createGame(input: $input) {
       id
       host
+      board
+      boardSize
+      createdAt
+      updatedAt
+      currentTurn
     }
   }
 `;
@@ -14,14 +19,11 @@ export const updateGame = /* GraphQL */ `
     updateGame(input: $input) {
       id
       host
-    }
-  }
-`;
-export const deleteGame = /* GraphQL */ `
-  mutation DeleteGame($input: DeleteGameInput!) {
-    deleteGame(input: $input) {
-      id
-      host
+      board
+      boardSize
+      createdAt
+      updatedAt
+      currentTurn
     }
   }
 `;

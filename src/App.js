@@ -1,7 +1,7 @@
-import logo from './logo.svg'
-import './App.css'
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Game from './Game/Game'
+import Home from './Home/Home'
+import './App.scss'
 
 import Amplify from 'aws-amplify'
 import awsconfig from './aws-exports'
@@ -12,12 +12,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Link to="/game/54123bad-61b4-4336-9ac9-d868e6947f2c">
-            <button>join game</button>
-          </Link>
-          <Link to="/game/1">
-            <button>create game</button>
-          </Link>
+          <Home />
         </Route>
         <Route exact path="/game/:id">
           <Game />
