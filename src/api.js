@@ -5,7 +5,7 @@ export async function callApi(operation, input) {
 }
 
 export async function createSubscription(subscription, input, callback) {
-  await API.graphql(graphqlOperation(subscription, input)).subscribe({
+  return await API.graphql(graphqlOperation(subscription, input)).subscribe({
     next: (res) => callback(res),
   })
 }

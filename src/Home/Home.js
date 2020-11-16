@@ -1,7 +1,4 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { callApi } from '../api'
-import { createGame } from '../graphql/mutations'
 import Modal from '../Modal/Modal'
 import Create from '../Create/Create'
 import Join from '../Join/Join'

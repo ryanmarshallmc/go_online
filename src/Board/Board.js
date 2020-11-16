@@ -9,8 +9,14 @@ const Board = ({ size, board, handleMove }) => {
 
   function addEdges(x, y) {
     const classes = []
+    if (x === 0) {
+      classes.push('left-edge')
+    }
     if (x === size - 1) {
       classes.push('right-edge')
+    }
+    if (y === 0) {
+      classes.push('top-edge')
     }
     if (y === size - 1) {
       classes.push('bottom-edge')

@@ -10,34 +10,35 @@ import './Game.scss'
 
 const BASE_URL = 'localhost:3000'
 
+let subscription
+
 const Game = () => {
   const { id } = useParams()
   const [game, setGame] = useState()
   const [loading, setLoading] = useState(true)
-  const [copyText, setCopyText] = useState('Copy Sharable Link')
   const [player, setPlayer] = useState(1)
 
   useEffect(() => {
     fetchGame()
+    window.scrollTo(0, 0)
+    return () => subscription && subscription.unsubscribe()
   }, [id])
-
-  useEffect(() => {
-    game && initSubscription()
-  }, [game])
 
   async function fetchGame() {
     const res = await callApi(getGame, { id })
-    setGame({
+    const payload = {
       ...res.data.getGame,
       board: JSON.parse(res.data.getGame.board),
-    })
+    }
+    setGame(payload)
     setLoading(false)
+    initSubscription(payload)
   }
 
-  async function initSubscription() {
-    createSubscription(
+  async function initSubscription(payload) {
+    subscription = await createSubscription(
       onUpdateGame,
-      { id, host: game.host },
+      { id, host: payload.host },
       handleSubscriptionUpdate
     )
   }

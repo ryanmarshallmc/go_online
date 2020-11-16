@@ -11,7 +11,7 @@ header {
   left: 0;
   width: 100vw;
   font-weight: 900;
-  z-index: 100;
+  z-index: 30;
 
   @media (max-width: $mobile) {
     justify-content: space-between;

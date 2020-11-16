@@ -9,14 +9,19 @@ const Header = () => {
   const { id } = useParams()
   const [modal, setModal] = useState()
   const [copy, setCopy] = useState('fa fa-clipboard')
+  const [label, setLabel] = useState('Sharing ID:')
 
   function handleCopy() {
-    var copyText = document.getElementById('gameId')
+    const copyText = document.getElementById('gameId')
     copyText.select()
     copyText.setSelectionRange(0, 99999)
     document.execCommand('copy')
     setCopy('fa fa-check')
-    setTimeout(() => setCopy('fa fa-clipboard'), 1000)
+    setLabel('Copied!')
+    setTimeout(() => {
+      setCopy('fa fa-clipboard')
+      setLabel('Sharing Id:')
+    }, 1000)
   }
   return (
     <header>
@@ -25,7 +30,7 @@ const Header = () => {
       </Link>
       {id && (
         <div className="GameId">
-          Sharing ID:
+          {label}
           <input id="gameId" readOnly value={id} />
           <i onClick={handleCopy} className={copy} />
         </div>

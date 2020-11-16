@@ -7,16 +7,16 @@ const Join = ({ close }) => {
     <>
       <h3>Join a Game</h3>
       <label htmlFor="host">
-        Game Id:&nbsp;&nbsp;
+        Sharing ID:&nbsp;&nbsp;
         <input
           type="text"
           value={gameId}
-          onChange={(e) => setGameId(e.target.value)}
-          placeholder="9 digit code..."
+          onChange={(e) => setGameId(e.target.value.toUpperCase())}
+          placeholder="4 digit code..."
         />
       </label>
       <br />
-      <Link to={`/game/${gameId}`} onClick={close}>
+      <Link to={`/game/${gameId.toUpperCase()}`} onClick={close}>
         <button className="action">Find my game!</button>
       </Link>
     </>

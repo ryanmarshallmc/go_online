@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { callApi } from '../api'
 import { createGame } from '../graphql/mutations'
+import { getGame } from '../graphql/queries'
 const shortid = require('shortid')
 
 const Create = ({ close }) => {
@@ -16,7 +17,12 @@ const Create = ({ close }) => {
   }
 
   async function handleCreate() {
-    const id = shortid.generate()
+    const id = shortid.generate().toUpperCase().substring(0, 4)
+    const existing = await callApi(getGame, { id })
+    if (existing.data.getGame) {
+      handleCreate()
+      return
+    }
     await callApi(createGame, {
       input: {
         id,
