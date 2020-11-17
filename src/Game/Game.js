@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect, useParams } from 'react-router'
-import { Link } from 'react-router-dom'
 import { callApi, createSubscription } from '../api'
 import Board from '../Board/Board'
 import { updateGame } from '../graphql/mutations'
 import { getGame } from '../graphql/queries'
 import { onUpdateGame } from '../graphql/subscriptions'
 import './Game.scss'
-
-const BASE_URL = 'localhost:3000'
 
 let subscription
 
@@ -22,7 +19,7 @@ const Game = () => {
     fetchGame()
     window.scrollTo(0, 0)
     return () => subscription && subscription.unsubscribe()
-  }, [id])
+  }, [id]) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function fetchGame() {
     const res = await callApi(getGame, { id })
