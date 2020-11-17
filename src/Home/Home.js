@@ -11,7 +11,7 @@ const Home = () => {
     <div id="Home">
       <img src="/home.png" className="bg" alt="Go!" />
       <h1>Play online, in real time</h1>
-      <h2>No sign-ups, no downloads, just get going!</h2>
+      <h2>No sign-ups, no downloads. Just get going!</h2>
       <div className="Buttons">
         <button onClick={() => setModal('create')}>start new game</button>
         <button onClick={() => setModal('join')}>join existing game</button>
